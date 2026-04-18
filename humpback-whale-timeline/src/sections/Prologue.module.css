@@ -1,0 +1,13 @@
+.section {
+  padding-block: var(--section-padding);
+  padding-inline: 1.5rem;
+}
+
+.container {
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+.container p + p {
+  margin-block-start: 1.25em;
+}

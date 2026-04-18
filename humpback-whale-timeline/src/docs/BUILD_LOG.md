@@ -122,6 +122,33 @@ curl -X POST http://localhost:3000/api/narrate \
 
 ---
 
+### SA1 — Narrative shell: palette, typography, section structure
+
+**Status:** Shipped. All boilerplate replaced with project foundation.
+
+**What shipped:**
+- **Palette:** 8 semantic CSS custom properties on `:root` (surface-abyss/deep/mid, text-primary/secondary/muted, accent/accent-soft). Page background is `--surface-deep` (#102C42).
+- **Typography:** Fraunces variable font loaded via Google Fonts (all axes: opsz, wght, SOFT, WONK). Body fluid 17–19px, line-height 1.65, measure 65ch. Display headings use `font-variation-settings: 'opsz' 144, 'SOFT' 50`, negative tracking, `text-wrap: balance`.
+- **Spacing:** Fluid section padding via `clamp(6rem, 10vh + 3rem, 12rem)`. Prose containers 65ch, full-bleed containers 72rem.
+- **Structure:** 6 section components in `src/sections/` with CSS modules. Skip-to-main link, `<header>` / `<main>` / `<footer>` landmarks, h1/h2 hierarchy, `aria-labelledby` on every section.
+- **Accessibility:** `prefers-reduced-motion` zeros all animations/transitions, `:focus-visible` with amber accent + 3px offset, semantic HTML throughout.
+
+### SA2 — Section scaffolding with real structure
+
+**Status:** Shipped. Each section has its production DOM shape, placeholder copy only.
+
+**What shipped:**
+- **Hero:** Full-viewport `hero-img.jpg` background with gradient overlay, kicker ("1940 — 2025"), h1, lead paragraph (1.35rem, opsz 36, SOFT 30), smooth-scroll arrow to `#prologue`.
+- **Prologue:** Two-paragraph prose column with generous spacing. Scroll target for Hero link.
+- **Timeline:** 16:9 canvas placeholder (surface-abyss), year + phase labels, scrubber (track/fill/thumb with ARIA slider), narration panel. Full-bleed width (72rem).
+- **Phases:** Three stacked `<article>` blocks (The Silencing / The Return / The New Ocean). Each has h3, period badge, body text, data callout (stat + label with accent border), and a real image from `/img/`. Two-column grid alternating image side, collapses to single column on mobile.
+- **DataChart:** 21:9 chart placeholder with header text.
+- **Closing:** Lead paragraph, second paragraph, credits footer with separator listing photo/audio/data sources.
+
+**Images wired:** `silencing-factory-ship-harvest.jpg`, `return-breach-hawaii.jpg`, `new-ocean-mother-calf.png`. Real assets from NOAA and Unsplash (see CREDITS.md).
+
+---
+
 ## Sunday, April 19
 
 ### [Fill in as you build]

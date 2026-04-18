@@ -1,0 +1,45 @@
+.section {
+  padding-block: var(--section-padding);
+  padding-inline: 1.5rem;
+}
+
+.container {
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+.lead {
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.container p + p {
+  margin-block-start: 1.25em;
+}
+
+.credits {
+  max-width: var(--measure);
+  margin-inline: auto;
+  margin-block-start: clamp(4rem, 8vh, 8rem);
+  padding-block-start: 2rem;
+  border-top: 1px solid var(--surface-mid);
+}
+
+.credits h3 {
+  font-size: 1rem;
+  font-variation-settings: 'opsz' 9, 'SOFT' 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.credits ul {
+  list-style: none;
+  padding: 0;
+}
+
+.credits li {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.8;
+}

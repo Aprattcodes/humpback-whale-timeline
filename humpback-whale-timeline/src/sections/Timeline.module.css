@@ -1,0 +1,101 @@
+.section {
+  padding-block: var(--section-padding);
+  padding-inline: 1.5rem;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.canvas {
+  max-width: var(--measure-full);
+  margin-inline: auto;
+  aspect-ratio: 16 / 9;
+  background-color: var(--surface-abyss);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.controls {
+  max-width: var(--measure-full);
+  margin-inline: auto;
+  margin-block-start: 2rem;
+}
+
+.labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-block-end: 0.75rem;
+}
+
+.year {
+  font-size: clamp(1.75rem, 3vw + 0.5rem, 2.75rem);
+  font-variation-settings: 'opsz' 144, 'SOFT' 50;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.phase {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.scrubber {
+  cursor: pointer;
+}
+
+.track {
+  position: relative;
+  height: 4px;
+  background-color: var(--surface-mid);
+  border-radius: 2px;
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  background-color: var(--accent);
+  border-radius: 2px;
+}
+
+.thumb {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--accent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.narration {
+  max-width: var(--measure);
+  margin-inline: auto;
+  margin-block-start: 2.5rem;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}

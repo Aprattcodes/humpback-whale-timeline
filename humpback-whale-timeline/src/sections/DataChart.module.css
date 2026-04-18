@@ -1,0 +1,28 @@
+.section {
+  padding-block: var(--section-padding);
+  padding-inline: 1.5rem;
+}
+
+.header {
+  max-width: var(--measure);
+  margin-inline: auto;
+  margin-block-end: clamp(3rem, 6vh, 6rem);
+}
+
+.chart {
+  max-width: var(--measure-full);
+  margin-inline: auto;
+  aspect-ratio: 21 / 9;
+  background-color: var(--surface-abyss);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}

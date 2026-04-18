@@ -1,0 +1,53 @@
+.section {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-inline: 1.5rem;
+  background: url('/img/hero-img.jpg') center / cover no-repeat;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    hsl(207 45% 12% / 0.7) 0%,
+    hsl(207 45% 12% / 0.85) 60%,
+    var(--surface-deep) 100%
+  );
+}
+
+.container {
+  position: relative;
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+.kicker {
+  display: block;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.875rem;
+  margin-block-end: 1rem;
+}
+
+.lead {
+  font-size: 1.35rem;
+  font-variation-settings: 'opsz' 36, 'SOFT' 30;
+  line-height: 1.55;
+}
+
+.scrollLink {
+  display: inline-flex;
+  margin-block-start: 3rem;
+  color: var(--accent-soft);
+  text-decoration: none;
+}
+
+.scrollIcon {
+  width: 2rem;
+  height: 2rem;
+}
