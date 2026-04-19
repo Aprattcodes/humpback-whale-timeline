@@ -151,4 +151,30 @@ curl -X POST http://localhost:3000/api/narrate \
 
 ## Sunday, April 19
 
-### [Fill in as you build]
+### SB1 — Scrubber mechanics + Zustand store
+
+**Status:** Shipped. Timeline now reads from a real state store; native range input drives `currentYear`.
+
+**What shipped:**
+- **`src/store.ts`** — single flat Zustand store. Fields: `currentYear`, `isPaused`, `reducedMotion`, `audioEnabled`, `narrationCache`. `audioEnabled` and `narrationCache` ship now so audio/narration blocks can subscribe without re-shaping the store later.
+- **Phase derivation as a plain function**, not stored state. `phaseForYear(year)` returns `'silencing' | 'return' | 'new-ocean'` with boundaries `<= 1966` / `<= 2000` / else, matching `Phases.tsx`. Components call it in render; no effect/selector needed.
+- **`prefers-reduced-motion` subscribed at module load** via `matchMedia(...).addEventListener('change', ...)` — no hook, no provider. Runs once on first import. Idiomatic for a Vite SPA; guarded for `typeof window`.
+- **`src/components/Scrubber.tsx`** — native `<input type="range">`, not a custom ARIA slider. `aria-label="Year, 1940 to 2025"` + `aria-valuetext="{year}, {phase}"` for SR.
+- **Debounced pause detection**: `isPaused` flips `false` on any year change, flips back to `true` 1500ms after last change via a `useRef<setTimeout>` inside an effect keyed on `currentYear`.
+- **Keyboard shortcuts**: Home → 1940, End → 2025, PageUp → +5 (clamped), PageDown → −5 (clamped). Arrow keys deliberately not intercepted — native range input handles ±1 per `step=1`.
+- **`aria-live="polite"` wraps only the phase label**, not the year. Year is already announced via `aria-valuetext`; doubling it would make the slider chatty when scrubbing.
+- **Range-input fill uses `--value` CSS var + gradient trick** on `::-webkit-slider-runnable-track` (Chromium/WebKit) and native `::-moz-range-progress` (Firefox). Works uniformly without JS measuring the thumb.
+- **Focus ring reused from global `:focus-visible`** in `index.css:77-80` (3px amber, 3px offset). No custom focus styling in `Scrubber.module.css`.
+- **`Timeline.tsx`** slimmed: custom track/fill/thumb divs + hardcoded year/phase labels all deleted. Now `<Scrubber />` inside `.controls`. Dead CSS rules (`.labels`, `.year`, `.phase`, `.scrubber`, `.track`, `.fill`, `.thumb`) removed from `Timeline.module.css`.
+
+**Decisions locked in:**
+- Phase boundaries mirror existing `Phases.tsx` logic exactly — one source of truth across the scrubber label, narration payload, and the three phase articles.
+- Store as a single flat file (`src/store.ts`) rather than a `src/store/` directory. One slice, no slicing needed yet.
+- Native `<input type="range">` over a custom ARIA slider or a UI library. Keyboard, touch, and SR support come for free; styling the fill cross-browser via CSS vars is the only non-trivial part.
+
+**Explicit non-goals (deferred to later blocks):**
+- No narration fetch, no audio, no Three.js canvas wiring. Downstream blocks subscribe to `currentYear` / `isPaused`.
+- No UI / slider library. No custom slider DOM.
+- Phase not stored as a field.
+
+**Deps:** `zustand@^5.0.12`.

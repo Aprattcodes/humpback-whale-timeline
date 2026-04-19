@@ -1,3 +1,4 @@
+import Scrubber from '../components/Scrubber';
 import styles from './Timeline.module.css';
 
 export default function Timeline() {
@@ -10,16 +11,7 @@ export default function Timeline() {
       </div>
 
       <div className={styles.controls}>
-        <div className={styles.labels}>
-          <span className={styles.year}>1940</span>
-          <span className={styles.phase}>The Silencing</span>
-        </div>
-        <div className={styles.scrubber} role="slider" aria-label="Timeline year" aria-valuemin={1940} aria-valuemax={2025} aria-valuenow={1940} tabIndex={0}>
-          <div className={styles.track}>
-            <div className={styles.fill} />
-            <div className={styles.thumb} />
-          </div>
-        </div>
+        <Scrubber />
       </div>
 
       <div className={styles.narration}>
